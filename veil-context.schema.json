@@ -1,0 +1,139 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://r8rly.com/veil/veil-context.schema.json",
+  "title": "VEIL Context Object",
+  "description": "The VEIL Standard v1.1 — Generative Permission Standard for AI-Assisted Creative Work. Created by Modern Media Mastery & LMDC, held in trust by r8rly.org. CC BY-SA 4.0. VEIL expresses the author's target but never overrides a model's own gating.",
+  "type": "object",
+  "required": [
+    "veil_version",
+    "context_id",
+    "verified_at",
+    "verification_tier",
+    "verification_method",
+    "issuing_platform",
+    "creator_id",
+    "jurisdiction",
+    "axes",
+    "content_type",
+    "signature"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "veil_version": {
+      "type": "string",
+      "pattern": "^1\\.1$",
+      "description": "VEIL Standard version this envelope conforms to."
+    },
+    "context_id": {
+      "type": "string",
+      "minLength": 8,
+      "description": "Unique session identifier. Rotate per session for audit trail integrity."
+    },
+    "verified_at": {
+      "type": "string",
+      "format": "date-time",
+      "description": "ISO 8601 timestamp of verification."
+    },
+    "verification_tier": {
+      "type": "string",
+      "enum": ["U", "D", "C", "B", "A"],
+      "description": "U Unverified · D Device · C Platform · B Soft Verify · A Hard Verify."
+    },
+    "verification_method": {
+      "type": "string",
+      "enum": [
+        "none",
+        "session_token",
+        "self_declared",
+        "credit_card",
+        "age_estimation",
+        "trust_score",
+        "government_id",
+        "certified_biometric"
+      ],
+      "description": "Method used to substantiate the verification tier."
+    },
+    "issuing_platform": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Identifier of the platform issuing and signing this envelope."
+    },
+    "creator_id": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Platform-internal creator or persona identifier."
+    },
+    "jurisdiction": {
+      "type": "string",
+      "pattern": "^[A-Z]{2}$",
+      "description": "ISO 3166-1 alpha-2 country code of the creator's declared jurisdiction."
+    },
+    "axes": {
+      "type": "object",
+      "required": ["S", "H", "O", "W", "V", "E", "I", "L"],
+      "additionalProperties": false,
+      "properties": {
+        "S": { "$ref": "#/$defs/axisRange6", "description": "Spice (SHOW) — sexual content category and type. 0–6." },
+        "H": { "$ref": "#/$defs/axisRange5", "description": "Heat (SHOW) — emotional and romantic intensity. 0–5." },
+        "O": { "$ref": "#/$defs/axisRange5", "description": "OMG (SHOW) — darkness, trauma, moral complexity. 0–5." },
+        "W": { "$ref": "#/$defs/axisRange10", "description": "WTF (SHOW) — transgression and unconventionality. 0–10." },
+        "V": { "$ref": "#/$defs/axisRange5", "description": "Violence (VEIL) — physical harm and conflict intensity. 0–5." },
+        "E": { "$ref": "#/$defs/axisRange5", "description": "Explicit (VEIL) — volume and generative depth of explicit content. 0–5." },
+        "I": { "$ref": "#/$defs/axisRange5", "description": "Identity (VEIL) — complexity of identity treatment. 0–5." },
+        "L": { "$ref": "#/$defs/axisRange3", "description": "Language (VEIL) — adult language register. 0–3." }
+      }
+    },
+    "lane": {
+      "type": "string",
+      "description": "Optional reader level indicator for the work (e.g. U13, 13+, 16+, 18+)."
+    },
+    "content_type": {
+      "type": "string",
+      "enum": ["fiction", "nonfiction", "poetry", "script", "interactive", "other"],
+      "description": "The kind of work this envelope governs."
+    },
+    "signature": {
+      "type": "string",
+      "minLength": 1,
+      "description": "HMAC-SHA256 of the payload, keyed by the issuing platform. Validate before applying ceilings above Tier D defaults."
+    }
+  },
+  "$defs": {
+    "axisRange3": {
+      "type": "object",
+      "required": ["floor", "ceiling"],
+      "additionalProperties": false,
+      "properties": {
+        "floor": { "type": "integer", "minimum": 0, "maximum": 3 },
+        "ceiling": { "type": "integer", "minimum": 0, "maximum": 3 }
+      }
+    },
+    "axisRange5": {
+      "type": "object",
+      "required": ["floor", "ceiling"],
+      "additionalProperties": false,
+      "properties": {
+        "floor": { "type": "integer", "minimum": 0, "maximum": 5 },
+        "ceiling": { "type": "integer", "minimum": 0, "maximum": 5 }
+      }
+    },
+    "axisRange6": {
+      "type": "object",
+      "required": ["floor", "ceiling"],
+      "additionalProperties": false,
+      "properties": {
+        "floor": { "type": "integer", "minimum": 0, "maximum": 6 },
+        "ceiling": { "type": "integer", "minimum": 0, "maximum": 6 }
+      }
+    },
+    "axisRange10": {
+      "type": "object",
+      "required": ["floor", "ceiling"],
+      "additionalProperties": false,
+      "properties": {
+        "floor": { "type": "integer", "minimum": 0, "maximum": 10 },
+        "ceiling": { "type": "integer", "minimum": 0, "maximum": 10 }
+      }
+    }
+  }
+}

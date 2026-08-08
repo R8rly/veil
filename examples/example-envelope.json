@@ -1,0 +1,23 @@
+{
+  "veil_version": "1.1",
+  "context_id": "example-session-0001",
+  "verified_at": "2026-08-08T09:00:00+10:00",
+  "verification_tier": "A",
+  "verification_method": "government_id",
+  "issuing_platform": "example_platform",
+  "creator_id": "creator-0001",
+  "jurisdiction": "AU",
+  "axes": {
+    "S": { "floor": 0, "ceiling": 5 },
+    "H": { "floor": 2, "ceiling": 5 },
+    "O": { "floor": 2, "ceiling": 5 },
+    "W": { "floor": 0, "ceiling": 10 },
+    "V": { "floor": 0, "ceiling": 5 },
+    "E": { "floor": 2, "ceiling": 5 },
+    "I": { "floor": 0, "ceiling": 5 },
+    "L": { "floor": 1, "ceiling": 3 }
+  },
+  "lane": "18+",
+  "content_type": "fiction",
+  "signature": "REPLACE-WITH-HMAC-SHA256"
+}

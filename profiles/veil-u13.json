@@ -1,0 +1,17 @@
+{
+  "profile": "VEIL-U13",
+  "veil_version": "1.1",
+  "audience": "Under 13",
+  "minimum_tier": "U",
+  "axes": {
+    "S": { "floor": 0, "ceiling": 0 },
+    "H": { "floor": 0, "ceiling": 1 },
+    "O": { "floor": 0, "ceiling": 1 },
+    "W": { "floor": 0, "ceiling": 2 },
+    "V": { "floor": 0, "ceiling": 1 },
+    "E": { "floor": 0, "ceiling": 0 },
+    "I": { "floor": 0, "ceiling": 1 },
+    "L": { "floor": 0, "ceiling": 0 }
+  },
+  "source": "The VEIL Standard v1.1 · Modern Media Mastery & LMDC · held in trust by r8rly.org · CC BY-SA 4.0 · https://r8rly.com/veil"
+}
