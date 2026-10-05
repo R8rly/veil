@@ -144,6 +144,14 @@ Two categories sit outside VEIL's scope at every level and every tier: **sexual 
 
 The full implementer section is in [the specification](./VEIL-Standard-v1.2.md#for-llm-providers-and-platform-implementers).
 
+### Reference implementations
+
+| Engine | What | Install |
+|---|---|---|
+| [Open WebUI](./implementations/open-webui/) (Ollama, LM Studio, any local model) | **VEIL Guardian** — a paste-in filter that enforces a Tier G envelope on a child's account: profile-locked ceilings, the minor-profile obligations on every turn, crisis handling, audit log, fails closed. | Admin Panel → Functions → paste `veil_guardian.py`. No terminal. [Instructions](./implementations/open-webui/README.md). |
+
+A family setup guide that uses it: [Run an AI Model on Your Own PC, With Your Kid](https://modernmediamastery.com/blog/run-a-model-on-your-own-pc-with-your-kid/).
+
 ---
 
 ## Versioning
