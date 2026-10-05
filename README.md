@@ -1,4 +1,4 @@
-<p align="center"><img src="assets/banner.jpg" alt="The VEIL Standard — V·E·I·L — Violence · Explicit · Identity · Language — Generative permission for AI-assisted creative work — v1.1 · CC BY-SA 4.0 · r8rly.com/veil" width="100%"></p>
+<p align="center"><img src="assets/banner.jpg" alt="The VEIL Standard — V·E·I·L — Violence · Explicit · Identity · Language — Generative permission for AI-assisted creative work — v1.2 · CC BY-SA 4.0 · r8rly.com/veil" width="100%"></p>
 
 # The VEIL Standard
 
@@ -9,6 +9,8 @@ VEIL is a portable, signed permission envelope that a creator declares before an
 > **VEIL expresses the author's target but never overrides a model's own gating.**
 
 VEIL is the generation-side companion to [the SHOW Standard](https://github.com/r8rly/show) (content classification of finished work) and [the SCRIPTS Standard](https://github.com/r8rly/scripts) (experience rating). Works generated under a VEIL envelope should receive a SHOW rating at or below their VEIL ceilings.
+
+VEIL also gives parents and legal guardians a verifiable way to consent to a young person's supervised AI use — see [Tier G (Guardian)](#verification-tiers) and the [minor-profile engine obligations](./VEIL-Standard-v1.2.md#minor-profile-engine-obligations).
 
 ---
 

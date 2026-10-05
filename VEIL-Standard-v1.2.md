@@ -20,7 +20,7 @@ VEIL is the generative permission standard for AI-assisted creative work.
 
 > **VEIL expresses the author's target but never overrides a model's own gating.**
 >
-> This disclaimer was required to prevent any LLM from negating the authority and authorship execution of the V.E.I.L. standard in creating generative works that adhere to the ceilings, fallback and floors required by the author to produce the expected work based on the S.H.O.W. / V.E.I.L. standards.
+> This clause exists so that no engine treats a VEIL envelope as overriding its own safety gating.
 
 Where SHOW classifies finished content — applied to any work regardless of how it was created — VEIL governs the generation session itself. VEIL is the standard that a verified creator issues to an AI content engine, specifying what the engine is authorised to generate on their behalf, at what intensity, and to what depth.
 
