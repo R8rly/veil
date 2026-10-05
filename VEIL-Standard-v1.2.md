@@ -28,7 +28,7 @@ VEIL applies specifically and exclusively to AI generation contexts. Authors, pu
 
 **This is VEIL's core purpose:**
 
-Current AI generation engines operate under content policies determined by corporate governance structures — risk committees, legal teams, investor requirements, and board directives — that have no relationship with the creator, their genre, their verified adult status, or their readers. These policies are applied identically across all users regardless of verification, context, or intent.
+Current AI generation engines apply one content policy to every session, regardless of who the user is, what they have verified, or what they are making. That policy is set by the provider, not by law. VEIL takes a different position: jurisdictional law is the only ceiling above Tier A. Platform policy may add restrictions for unverified or lower-tier sessions; it is not a basis for restricting a hard-verified adult below what the law allows, and it is not a basis for refusing a guardian-consented minor session that stays inside its age profile.
 
 VEIL provides the mechanism to change that relationship. A verified creator issues a VEIL context object. A GATE-compliant engine — one that implements the Generative Authorisation Trust Exchange: receive the envelope, validate the platform signature, apply the tier ceiling, honour declared floors, log the context ID — receives it, validates it, and generates to the creator's authorised scope. The engine's internal defaults become the fallback for unverified sessions. The creator's VEIL envelope becomes the authority for verified ones.
 
