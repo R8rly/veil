@@ -2,8 +2,8 @@ cff-version: 1.2.0
 message: "If you use or implement the VEIL Standard, please cite it as below."
 title: "The VEIL Standard"
 abstract: "V·E·I·L — Generative Permission Standard for AI-Assisted Creative Work. A portable, signed permission envelope declaring per-axis ceilings and floors (Spice, Heat, OMG, WTF, Violence, Explicit, Identity, Language) for AI-assisted generation sessions. Companion to the SHOW Standard (content classification) and the SCRIPTS Standard (experience rating). VEIL expresses the author's target but never overrides a model's own gating."
-version: "1.1"
-date-released: "2026-08-08"
+version: "1.2"
+date-released: "2026-10-05"
 authors:
   - name: "Modern Media Mastery & LMDC"
 contact:

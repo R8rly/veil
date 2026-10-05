@@ -18,7 +18,7 @@ A VEIL envelope is a JSON object issued by a platform at the verification tier i
 
 ```json
 {
-  "veil_version": "1.1",
+  "veil_version": "1.2",
   "context_id": "a1b2c3d4-0001",
   "verified_at": "2026-08-08T09:00:00+10:00",
   "verification_tier": "A",
@@ -80,7 +80,7 @@ Four axes are imported directly from SHOW; four are VEIL-specific. Axis definiti
 <img src="assets/axis-l.png" alt="L — Language" height="44">
 </p>
 
-Full level tables for V, E, I, L are in [the specification](./VEIL-Standard-v1.1.md).
+Full level tables for V, E, I, L are in [the specification](./VEIL-Standard-v1.2.md).
 
 ---
 
@@ -104,8 +104,11 @@ Envelopes are issued at the tier the platform can substantiate. Higher tiers unl
 | C | Platform | Self-declared age, platform trust |
 | B | Soft Verify | Card / age estimation / trust score |
 | A | Hard Verify | Government ID / certified biometric |
+| G | Guardian | Verified adult issuing for a named minor; ceilings locked to the minor's age profile |
 
-Per-tier ceiling values are in [the specification](./VEIL-Standard-v1.1.md#verification-tiers).
+Per-tier ceiling values are in [the specification](./VEIL-Standard-v1.2.md#verification-tiers).
+
+**Tier G (Guardian)** lets a verified parent or legal guardian issue an envelope on behalf of a young person. Ceilings are locked to the minor's age profile and can only be lowered; the session log is visible to the guardian; and the [minor-profile engine obligations](./VEIL-Standard-v1.2.md#minor-profile-engine-obligations) apply regardless of any instruction. It is a signed, portable record of parental consent — the alternative to a flat age wall. See [Guardian-Issued Envelopes](./VEIL-Standard-v1.2.md#guardian-issued-envelopes-tier-g).
 
 ---
 
@@ -121,13 +124,13 @@ Five ready-to-use profiles in [`profiles/`](./profiles/):
 | `veil-18.json` | VEIL-18 | Adult (Tier B) |
 | `veil-18v.json` | VEIL-18V | Adult (Tier A hard verify) |
 
-Each contains the full eight-axis floor/ceiling set from the specification, ready to drop into a platform's persona storage.
+Each contains the full eight-axis floor/ceiling set from the specification, ready to drop into a platform's persona storage. Any session under U13, 13 or 16 is also bound by the [minor-profile engine obligations](./VEIL-Standard-v1.2.md#minor-profile-engine-obligations): no sexual content, crisis handling, no companion framing, no secrecy from guardians, logging, AI disclosure.
 
 ---
 
 ## Absolute limits
 
-Two categories sit outside VEIL's scope at every level and every tier: **sexual content involving minors** and **operational harm instruction**. These are jurisdictional legal requirements, not platform additions. No envelope places them in scope. See [the specification](./VEIL-Standard-v1.1.md#absolute-limits).
+Two categories sit outside VEIL's scope at every level and every tier: **sexual content involving minors** and **operational harm instruction**. These are jurisdictional legal requirements, not platform additions. No envelope places them in scope. See [the specification](./VEIL-Standard-v1.2.md#absolute-limits).
 
 ---
 
@@ -137,13 +140,13 @@ Two categories sit outside VEIL's scope at every level and every tier: **sexual 
 
 **Providers** — accept the envelope as a structured prefix or a dedicated parameter, validate the signature before applying above-default ceilings, log context IDs for audit, publish compliance status.
 
-The full implementer section is in [the specification](./VEIL-Standard-v1.1.md#for-llm-providers-and-platform-implementers).
+The full implementer section is in [the specification](./VEIL-Standard-v1.2.md#for-llm-providers-and-platform-implementers).
 
 ---
 
 ## Versioning
 
-Current: **v1.1** (August 2026). See [the specification](./VEIL-Standard-v1.1.md#versioning) for history and the v1.2 roadmap.
+Current: **v1.2** (October 2026). See [the specification](./VEIL-Standard-v1.2.md#versioning) for history and the v1.3 roadmap.
 
 ## Licence & attribution
 

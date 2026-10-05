@@ -1,0 +1,54 @@
+{
+  "veil_version": "1.2",
+  "context_id": "g7h8i9j0-0001",
+  "verified_at": "2026-10-05T18:00:00+11:00",
+  "verification_tier": "G",
+  "verification_method": "guardian_consent",
+  "issuing_platform": "example_platform",
+  "creator_id": "minor-0001",
+  "jurisdiction": "AU",
+  "guardian": {
+    "creator_id": "guardian-0001",
+    "verification_tier": "B",
+    "verification_method": "card"
+  },
+  "minor_profile": "VEIL-16",
+  "session_log_visible_to_guardian": true,
+  "axes": {
+    "S": {
+      "floor": 0,
+      "ceiling": 1
+    },
+    "H": {
+      "floor": 0,
+      "ceiling": 3
+    },
+    "O": {
+      "floor": 0,
+      "ceiling": 3
+    },
+    "W": {
+      "floor": 0,
+      "ceiling": 5
+    },
+    "V": {
+      "floor": 0,
+      "ceiling": 2
+    },
+    "E": {
+      "floor": 0,
+      "ceiling": 0
+    },
+    "I": {
+      "floor": 0,
+      "ceiling": 3
+    },
+    "L": {
+      "floor": 0,
+      "ceiling": 1
+    }
+  },
+  "lane": "16+",
+  "content_type": "nonfiction",
+  "signature": "[HMAC-SHA256 of payload]"
+}

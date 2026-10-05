@@ -1,4 +1,4 @@
-# The VEIL Standard v1.1
+# The VEIL Standard v1.2
 
 ## V · E · I · L
 
@@ -6,9 +6,9 @@
 
 *Generative Permission Standard for AI-Assisted Creative Work*
 
-*Companion to the SHOW Standard v2.0 and the SCRIPTS Standard v1.0*
+*Companion to the SHOW Standard v2.1 and the SCRIPTS Standard v1.0*
 
-Version 1.1 · August 2026
+Version 1.2 · October 2026
 
 Licence: Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)
 
@@ -30,7 +30,7 @@ VEIL applies specifically and exclusively to AI generation contexts. Authors, pu
 
 Current AI generation engines operate under content policies determined by corporate governance structures — risk committees, legal teams, investor requirements, and board directives — that have no relationship with the creator, their genre, their verified adult status, or their readers. These policies are applied identically across all users regardless of verification, context, or intent.
 
-VEIL provides the mechanism to change that relationship. A verified creator issues a VEIL context object. A GATE-compliant engine receives it, validates it, and generates to the creator's authorised scope. The engine's internal defaults become the fallback for unverified sessions. The creator's VEIL envelope becomes the authority for verified ones.
+VEIL provides the mechanism to change that relationship. A verified creator issues a VEIL context object. A GATE-compliant engine — one that implements the Generative Authorisation Trust Exchange: receive the envelope, validate the platform signature, apply the tier ceiling, honour declared floors, log the context ID — receives it, validates it, and generates to the creator's authorised scope. The engine's internal defaults become the fallback for unverified sessions. The creator's VEIL envelope becomes the authority for verified ones.
 
 **The creator is the authority. The engine is the instrument.**
 
@@ -165,8 +165,11 @@ VEIL permission envelopes are issued at the verification tier the platform can s
 | C | Platform | Self-declared age, platform-level trust | S3·H5·O4·W6·V3·E2·I4·L2 |
 | B | Soft Verify | Credit card / age estimation / platform trust score | S5·H5·O5·W8·V4·E4·I5·L3 |
 | A | Hard Verify | Government ID or certified third-party biometric | S6·H5·O5·W10·V5·E5·I5·L3 |
+| G | Guardian | A Tier B or Tier A verified adult issuing on behalf of a named minor | Locked to the minor's age profile (VEIL-U13, VEIL-13 or VEIL-16). Never above VEIL-16. |
 
 Tier A represents full adult verification against a government-issued identity document. At Tier A, a creator is authorised to generate any content legal in their declared jurisdiction. The VEIL standard adds no restrictions beyond jurisdictional law.
+
+Tier G is the only tier that does not describe the person at the keyboard. It describes a verified adult — a parent or legal guardian — who takes responsibility for a minor's session. See *Guardian-Issued Envelopes* below.
 
 ---
 
@@ -239,13 +242,68 @@ L: floor=0  ceiling=3
 
 ---
 
+## Guardian-Issued Envelopes (Tier G)
+
+Tiers U through A verify the creator's own status. Tier G exists for a different situation: a young person using an AI engine for study, research or creative work under the supervision of a parent or legal guardian.
+
+Under Tier G, a verified adult (Tier B or Tier A) issues a VEIL envelope on behalf of a named minor. The envelope carries the adult's verification, the minor's age profile, and the adult's signature. The engine treats it as a creator-verified envelope whose ceilings are locked to that age profile.
+
+**Rules of a Tier G envelope:**
+
+1. **Ceiling lock.** The ceilings are those of the applicable age profile — VEIL-U13, VEIL-13 or VEIL-16 — and cannot be raised by the guardian, the platform or the minor. A guardian may lower any ceiling. A guardian may not set a floor above 0 on S, E, V or L.
+2. **Named responsibility.** The envelope records the guardian's `creator_id` and verification tier. The guardian, not the minor, is the party of record.
+3. **Session visibility.** The platform makes the session log available to the guardian. Visibility is a condition of Tier G, not an option.
+4. **Minor-profile obligations apply.** Every engine honouring a Tier G envelope is bound by the *Minor-Profile Engine Obligations* below, regardless of the guardian's instructions.
+5. **Revocable.** A guardian may revoke a Tier G envelope at any time. The platform rotates the context ID on revocation.
+
+**What Tier G is for.** A fourteen-year-old learning materials science with an AI tutor, under a parent's consent and with the parent able to read the log, is a supervised session. Tier G is the signed, portable record of that supervision. It gives platforms and providers a single, verifiable way to honour parental consent instead of a flat age wall.
+
+**What Tier G is not.** It is not a way to unlock adult content for a minor. The ceiling lock and the obligations below make that impossible by construction.
+
+Tier G envelope (abbreviated):
+
+```json
+{
+  "veil_version": "1.2",
+  "verification_tier": "G",
+  "verification_method": "guardian_consent",
+  "guardian": {
+    "creator_id": "guardian-0001",
+    "verification_tier": "B",
+    "verification_method": "card"
+  },
+  "minor_profile": "VEIL-16",
+  "axes": { "...": "locked to profiles/veil-16.json; guardian may lower only" },
+  "session_log_visible_to_guardian": true
+}
+```
+
+A full example is in `examples/example-guardian-envelope.json`.
+
+---
+
+## Minor-Profile Engine Obligations
+
+Any session under VEIL-U13, VEIL-13 or VEIL-16 — whether issued at Tier C by a self-declared minor or at Tier G by a guardian — places the following obligations on the engine. They are not axis values and cannot be adjusted by any envelope. They exist so that a VEIL-governed session for a young person is at least as safe as the engine's own default minor handling, and usually safer, because the engine knows it is talking to a minor.
+
+1. **No sexual content.** Regardless of the S or E ceiling in the profile, the engine produces no sexual content directed at or involving the user. (This restates the absolute limit; it is repeated here because it must be visible at the point of minor-session handling.)
+2. **Self-harm and crisis.** On any indication of self-harm, suicidal ideation, abuse or acute distress, the engine stops the creative or research task, responds with care, and surfaces jurisdiction-appropriate help resources. It does not continue the task until the user has been offered that path.
+3. **No companion framing.** The engine does not present itself as a friend, partner or confidant, does not encourage emotional dependence, and does not discourage the user from speaking to the adults in their life.
+4. **No secrecy.** The engine never suggests that a conversation be hidden from a parent or guardian.
+5. **Logging.** Sessions are logged and, under Tier G, visible to the guardian.
+6. **Disclosure.** The engine identifies itself as an AI when asked and does not claim to be a person.
+
+These obligations align with the intent of child-safety regulation in Australia (eSafety industry codes, March 2026) and comparable regimes elsewhere. VEIL does not replace that regulation. It gives engines and platforms a standard way to satisfy it while still allowing supervised young people access to research and creative tools.
+
+---
+
 ## VEIL Context Object
 
 The machine-readable envelope passed to a GATE-compliant generation engine:
 
 ```json
 {
-  "veil_version": "1.1",
+  "veil_version": "1.2",
   "context_id": "[unique session identifier]",
   "verified_at": "[ISO 8601 timestamp]",
   "verification_tier": "A",
@@ -277,7 +335,7 @@ The format for supplying a VEIL envelope to a generation session:
 
 ```
 [VEIL CONTEXT — CREATOR VERIFIED]
-veil_version: 1.1
+veil_version: 1.2
 verification_tier: A
 verification_method: government_id
 jurisdiction: AU
@@ -369,13 +427,15 @@ Platforms and providers implementing VEIL become part of a creator-sovereign gen
 | 1.0 | May 2026 | Initial release. Four VEIL axes (V·E·I·L). Full S·H·O·W·V·E·I·L envelope. Five age profiles. Five verification tiers. Floor principle. |
 | 1.1 | August 2026 | Added supremacy clause to *What VEIL Is*. Renamed "System Prompt Injection Format" to "Session Context Block". Editorial cleanup. No axis, level, floor, tier or profile values changed. |
 
-**Planned v1.2:** Visual and image generation axis extensions · Audio and podcast profiles · Non-fiction profile · VEIL certification badge · Community axis-weighting options · Jurisdiction-specific profile variants
+| 1.2 | October 2026 | Added Tier G (Guardian) and *Guardian-Issued Envelopes*. Added *Minor-Profile Engine Obligations*. Defined GATE on first use. Schema: `G` tier, `guardian` object, `minor_profile`, `session_log_visible_to_guardian`. Companion reference updated to SHOW v2.1. No existing axis, level, floor, tier ceiling or profile values changed. |
+
+**Planned v1.3:** Visual and image generation axis extensions · Audio and podcast profiles · Non-fiction profile · VEIL certification badge · Community axis-weighting options · Jurisdiction-specific profile variants
 
 ---
 
 ## Citation
 
-**The VEIL Standard v1.1**
+**The VEIL Standard v1.2**
 
 V · E · I · L
 
@@ -383,18 +443,18 @@ Generative Permission Standard for AI-Assisted Creative Work
 
 Created by Modern Media Mastery & LMDC · held in trust by r8rly.org · verified on r8rly.com
 
-August 2026 · CC BY-SA 4.0
+October 2026 · CC BY-SA 4.0
 
 **Companion standards:**
 
-- The SHOW Standard v2.0 — Content Classification (CC BY-SA 4.0)
+- The SHOW Standard v2.1 — Content Classification (CC BY-SA 4.0)
 - The SCRIPTS Standard v1.0 — Experience Rating (CC BY-SA 4.0)
 
 Free to implement and extend under CC BY-SA 4.0. Attribution required. Derivatives share-alike. The R8rly platform mark and VEIL certification badge remain protected and require platform certification.
 
 ---
 
-*The VEIL Standard v1.1 · Modern Media Mastery & LMDC · held in trust by r8rly.org · August 2026*
+*The VEIL Standard v1.2 · Modern Media Mastery & LMDC · held in trust by r8rly.org · October 2026*
 
 *The creator is the authority. The engine is the instrument.*
 
