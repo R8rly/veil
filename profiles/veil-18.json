@@ -1,6 +1,6 @@
 {
   "profile": "VEIL-18",
-  "veil_version": "1.1",
+  "veil_version": "1.2",
   "audience": "Adult (18+, Tier B platform verification)",
   "minimum_tier": "B",
   "axes": {
